@@ -1,0 +1,27 @@
+{
+  "name": "redux-login",
+  "version": "1.0.0",
+  "description": "* \tredux实现登录注册",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch server --exec babel-node -- server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twomiya/redux-login.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/twomiya/redux-login/issues"
+  },
+  "homepage": "https://github.com/twomiya/redux-login#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.18.8"
+  }
+}
