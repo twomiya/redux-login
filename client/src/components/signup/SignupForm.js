@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class SignupForm extends Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class SignupForm extends Component {
       passwordConfirmation: ''
     }
   }
-
+  static propTypes={
+    userSigupRequest: PropTypes.func.isRequired
+  }
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -18,6 +21,7 @@ class SignupForm extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
+    this.props.userSigupRequest(this.state);
   }
 
   render() {
@@ -83,4 +87,5 @@ class SignupForm extends Component {
   }
 }
 
-export default SignupForm;
+
+export default SignupForm
