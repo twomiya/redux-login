@@ -27,10 +27,10 @@ class SignupForm extends Component {
   render() {
     return (
       <form onSubmit={ this.onSubmit }>
-        <h1>Join our community!</h1>
+        <h1>欢迎光临!</h1>
 
         <div className="form-group">
-          <label className="control-label">Username</label>
+          <label className="control-label">用户名</label>
 
           <input
             value={ this.state.username }
@@ -42,7 +42,7 @@ class SignupForm extends Component {
         </div>
 
         <div className="form-group">
-          <label className="control-label">Email</label>
+          <label className="control-label">邮箱</label>
 
           <input
             value={ this.state.email }
@@ -54,7 +54,7 @@ class SignupForm extends Component {
         </div>
 
         <div className="form-group">
-          <label className="control-label">Password</label>
+          <label className="control-label">密码</label>
 
           <input
             value={ this.state.password }
@@ -66,7 +66,7 @@ class SignupForm extends Component {
         </div>
 
         <div className="form-group">
-          <label className="control-label">Password Confirmation</label>
+          <label className="control-label">确认密码</label>
 
           <input
             value={ this.state.passwordConfirmation }
@@ -79,7 +79,7 @@ class SignupForm extends Component {
 
         <div className="form-group">
           <button className="btn btn-primary btn-lg">
-            Sign up
+            注册
           </button>
         </div>
       </form>
