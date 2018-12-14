@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 class SignupForm extends Component {
   constructor(props) {
@@ -8,7 +9,9 @@ class SignupForm extends Component {
       username: '',
       email: '',
       password: '',
-      passwordConfirmation: ''
+      passwordConfirmation: '',
+      errors:{},
+      isLoading:false,
     }
   }
   static propTypes={
@@ -20,11 +23,22 @@ class SignupForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
-    this.props.userSigupRequest(this.state);
+    this.setState({errors:{},isLoading:true})
+    this.props.userSigupRequest(this.state).then(
+        () => {
+            // this.props.addFlashMessage({
+            //   type: "success",
+            //   text: "You signed up successfully. welcome"
+            // })
+            // this.context.router.history.push('/');
+          },
+          ({ response }) => { this.setState({ errors: response.data ,isLoading:false}) }
+    );
   }
 
   render() {
+    const {errors} =this.state;
+    console.log(this.state)
     return (
       <form onSubmit={ this.onSubmit }>
         <h1>欢迎光临!</h1>
@@ -37,8 +51,9 @@ class SignupForm extends Component {
             onChange={ this.onChange }
             type="text"
             name="username"
-            className="form-control"
+            className={classnames("form-control",{'is-invalid': errors.username })}
           />
+          {errors.username && <span className='form-text text-muted alert-danger' >{ errors.username }</span>}
         </div>
 
         <div className="form-group">
@@ -49,8 +64,9 @@ class SignupForm extends Component {
             onChange={ this.onChange }
             type="email"
             name="email"
-            className="form-control"
+            className={classnames("form-control",{'is-invalid': errors.email })}
           />
+          {errors.email  && <span className='form-text text-muted alert-danger'>{ errors.email }</span>}
         </div>
 
         <div className="form-group">
@@ -61,8 +77,9 @@ class SignupForm extends Component {
             onChange={ this.onChange }
             type="password"
             name="password"
-            className="form-control"
+            className={classnames("form-control",{'is-invalid': errors.password })}
           />
+          {errors.password  && <span className='form-text text-muted alert-danger'>{ errors.password }</span> }
         </div>
 
         <div className="form-group">
@@ -73,12 +90,13 @@ class SignupForm extends Component {
             onChange={ this.onChange }
             type="password"
             name="passwordConfirmation"
-            className="form-control"
+            className={classnames("form-control",{'is-invalid': errors.passwordConfirmation })}
           />
+          {errors.passwordConfirmation  && <span className='form-text text-muted alert-danger'>{ errors.passwordConfirmation }</span>}
         </div>
 
         <div className="form-group">
-          <button className="btn btn-primary btn-lg">
+          <button className="btn btn-primary btn-lg" disabled={this.state.isLoading}>
             注册
           </button>
         </div>
