@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NavigationBar from './components/NavigationBar';
-import * as serviceWorker from './serviceWorker';
-
+import registerServiceWorker from './registerServiceWorker';
 import logger from 'redux-logger';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
@@ -19,7 +18,10 @@ const store = createStore(
     )
 );
 
-const app =
+    
+
+    
+ReactDOM.render(
     <Provider store={store}>
         <Router routes={ routes }>
             <div>
@@ -27,12 +29,6 @@ const app =
                 { routes }
             </div>
         </Router>
-    </Provider>
-
-    
-ReactDOM.render(app, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+    </Provider>, 
+    document.getElementById('root'));
+registerServiceWorker();

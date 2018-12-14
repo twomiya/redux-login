@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -14,6 +15,9 @@ class SignupForm extends Component {
       isLoading:false,
     }
   }
+//   static contextType={
+//       router:PropTypes.object
+//   }
   static propTypes={
     userSigupRequest: PropTypes.func.isRequired
   }
@@ -26,11 +30,13 @@ class SignupForm extends Component {
     this.setState({errors:{},isLoading:true})
     this.props.userSigupRequest(this.state).then(
         () => {
+            // console.dir(this.context)
+            console.log(this.props)
             // this.props.addFlashMessage({
             //   type: "success",
             //   text: "You signed up successfully. welcome"
             // })
-            // this.context.router.history.push('/');
+            this.props.history.push('/');
           },
           ({ response }) => { this.setState({ errors: response.data ,isLoading:false}) }
     );
@@ -38,7 +44,6 @@ class SignupForm extends Component {
 
   render() {
     const {errors} =this.state;
-    console.log(this.state)
     return (
       <form onSubmit={ this.onSubmit }>
         <h1>欢迎光临!</h1>
@@ -106,4 +111,4 @@ class SignupForm extends Component {
 }
 
 
-export default SignupForm
+export default withRouter(SignupForm)
