@@ -5,21 +5,21 @@ let router = express.Router();
 const validateInput =(data)=>{
     let errors={};
     if (validator.isEmpty(data.username)) {
-        errors.username = "The field is required";
+        errors.username = "请输入用户名";
       }
     
       if (validator.isEmpty(data.email)) {
-        errors.email = "The field is required";
+        errors.email = "请输入邮箱";
       }
       if (validator.isEmpty(data.password)) {
-        errors.password = "The field is required";
+        errors.password = "请输入密码";
       }
     
       if (validator.isEmpty(data.passwordConfirmation)) {
-        errors.passwordConfirmation = "The field is required";
+        errors.passwordConfirmation = "请输入确认密码";
       }
       if (!validator.equals(data.password, data.passwordConfirmation)) {
-        errors.passwordConfirmation = "Passwords must match";
+        errors.passwordConfirmation = "两次密码不一致";
       }
     
     return{
