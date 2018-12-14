@@ -7,9 +7,10 @@ const validateInput =(data)=>{
     if (validator.isEmpty(data.username)) {
         errors.username = "请输入用户名";
       }
-    
-      if (validator.isEmail(data.email)) {
+      if (validator.isEmpty(data.email)) {
         errors.email = "请输入邮箱";
+      }else if(!validator.isEmail(data.email)){
+        errors.email = "输入邮箱无效";
       }
       if (validator.isEmpty(data.password)) {
         errors.password = "请输入密码";
