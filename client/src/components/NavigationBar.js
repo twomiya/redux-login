@@ -21,6 +21,9 @@ class NavigationBar extends Component {
                   <li className="nav-item">
                     <Link className="nav-link" to="/signup">注册</Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">登录</Link>
+                  </li>
                 </ul>
               </div>
             </div>

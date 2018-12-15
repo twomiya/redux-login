@@ -31,6 +31,15 @@ const validateInput =(data)=>{
         isValid: isEmpty(errors)
     }
 }
+// router.get('/:identifier', (req, res) => {
+//   User.query({
+//     select: ["username", "email"],
+//     where: { email: req.params.identifier },
+//     orWhere: { username: req.params.identifier }
+//   }).fetch().then(user => {
+//     res.json({ user });
+//   })
+// });
 router.post('/',(req,res)=>{
     const {errors, isValid} = validateInput(req.body);
     if(isValid){

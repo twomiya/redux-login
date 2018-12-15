@@ -19,17 +19,37 @@ class SignupForm extends Component {
 //       router:PropTypes.object
 //   }
   static propTypes={
-    userSigupRequest: PropTypes.func.isRequired,
+    userSignupRequest: PropTypes.func.isRequired,
     addFlashMessage:PropTypes.func.isRequired,
+    isUserExists: PropTypes.func.isRequired
   }
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  }
+  checkUserExists = (e) => {
+    const field = e.target.name;
+    const val = e.target.value;
+    // if (val !== '') {
+    //   this.props.isUserExists(val).then(res => {
+    //     let errors = this.state.errors;
+    //     let invalid;
+    //     if (res.data.user) {
+    //       errors[field] = "There is user with such " + field;
+    //       invalid = true;
+    //     } else {
+    //       errors[field] = '';
+    //       invalid = false
+    //     }
+
+    //     this.setState({ errors, invalid });
+    //   });
+    // }
   }
 
   onSubmit = (e) => {
     e.preventDefault();
     this.setState({errors:{},isLoading:true})
-    this.props.userSigupRequest(this.state).then(
+    this.props.userSignupRequest(this.state).then(
         () => {
             // console.dir(this.context)
             console.log(this.props)
@@ -57,6 +77,7 @@ class SignupForm extends Component {
             onChange={ this.onChange }
             type="text"
             name="username"
+            onBlur={this.checkUserExists}
             className={classnames("form-control",{'is-invalid': errors.username })}
           />
           {errors.username && <span className='form-text text-muted alert-danger' >{ errors.username }</span>}
@@ -70,6 +91,7 @@ class SignupForm extends Component {
             onChange={ this.onChange }
             type="email"
             name="email"
+            onBlur={ this.checkUserExists }
             className={classnames("form-control",{'is-invalid': errors.email })}
           />
           {errors.email  && <span className='form-text text-muted alert-danger'>{ errors.email }</span>}
