@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NavigationBar from './components/NavigationBar';
+import FlashMessageList from './components/flash/FlashMessageList'
 import registerServiceWorker from './registerServiceWorker';
 import logger from 'redux-logger';
 import {composeWithDevTools} from 'redux-devtools-extension';
@@ -26,6 +27,7 @@ ReactDOM.render(
         <Router routes={ routes }>
             <div>
                 <NavigationBar />
+                <FlashMessageList/>
                 { routes }
             </div>
         </Router>

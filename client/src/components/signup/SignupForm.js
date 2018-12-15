@@ -19,7 +19,8 @@ class SignupForm extends Component {
 //       router:PropTypes.object
 //   }
   static propTypes={
-    userSigupRequest: PropTypes.func.isRequired
+    userSigupRequest: PropTypes.func.isRequired,
+    addFlashMessage:PropTypes.func.isRequired,
   }
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -32,10 +33,10 @@ class SignupForm extends Component {
         () => {
             // console.dir(this.context)
             console.log(this.props)
-            // this.props.addFlashMessage({
-            //   type: "success",
-            //   text: "You signed up successfully. welcome"
-            // })
+            this.props.addFlashMessage({
+              type: "success",
+              text: "你已经注册成功， 欢迎你！"
+            })
             this.props.history.push('/');
           },
           ({ response }) => { this.setState({ errors: response.data ,isLoading:false}) }
