@@ -40,6 +40,7 @@ class LoginForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    this.context.router.history.push('/')
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
       this.props.login(this.state).then(

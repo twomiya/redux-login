@@ -12,14 +12,19 @@ import routes from './routes';
 import { createStore ,applyMiddleware} from 'redux';
 import { Provider} from 'react-redux';
 import rootReducer from './reducers';
+import setAuthorizationToken from './utils/setAuthorizationToken';
+import { setCurrentUser } from './actions/authActions';
+import jwtDecode from 'jwt-decode';
 const store = createStore(
     rootReducer,
     composeWithDevTools(
         applyMiddleware(logger,thunk)
     )
 );
-
-    
+if (localStorage.jwtToken) {
+    setAuthorizationToken(localStorage.jwtToken);
+    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+  }
 
     
 ReactDOM.render(
